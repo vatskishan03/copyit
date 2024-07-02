@@ -2,7 +2,7 @@
 
 import axios from 'axios'; // Make sure axios is installed in your frontend
 
-const API_BASE_URL = '/api/snippet'; // Adjust if your backend is on a different port or domain
+const API_BASE_URL = 'http://localhost:3000/api/snippet'; // Adjust if your backend is on a different port or domain
 
 // Function to create a new snippet
 export async function createSnippet(content) {

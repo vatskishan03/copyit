@@ -1,13 +1,12 @@
-// frontend/src/components/CreateSnippetForm.jsx
 import React, { useState } from 'react';
-import { createSnippet } from '../api/snippetService.js';
-import { useNavigate } from "react-router-dom";
+import { createSnippet } from '../api/snippetService';
+import { useNavigate } from 'react-router-dom';
 
 function CreateSnippetForm() {
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null); // Use local state for error
-  const navigate = useNavigate(); 
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +14,7 @@ function CreateSnippetForm() {
 
     try {
       const newSnippet = await createSnippet(content);
-      navigate(`/receive/${newSnippet.token}`); 
+      navigate(`/receive/${newSnippet.token}`);
     } catch (error) {
       console.error('Error creating snippet:', error);
       setError(error.response?.data?.error || 'An error occurred.');

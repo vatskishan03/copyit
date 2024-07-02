@@ -1,54 +1,59 @@
 // frontend/src/components/ReceiveSnippetForm.jsx
-import React, { useState, useEffect } from 'react';
-import { getSnippet } from '../api/snippetService.js';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { getSnippet } from "../api/snippetService";
+import { useNavigate, useParams } from "react-router-dom";
 
 function ReceiveSnippetForm() {
+  const [token, setToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [snippet, setSnippet] = useState(null);
   const [error, setError] = useState(null);
-  const { token } = useParams();
+  const { token: tokenParam } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchSnippet = async () => {
-      setIsLoading(true);
-      setError(null); // Reset error state
-      try {
-        const fetchedSnippet = await getSnippet(token);
-        if (!fetchedSnippet) {
-          throw new Error('Invalid token or snippet not found.');
-        }
-        setSnippet(fetchedSnippet);
-      } catch (error) {
-        console.error('Error fetching snippet:', error);
-        setError(error.response?.data?.error || 'An error occurred.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    if (token) { // Fetch only if a token is provided in the URL
-      fetchSnippet();
+    if (tokenParam) {
+      // Fetch only if a token is provided in the URL
+      fetchSnippet(tokenParam);
     }
-  }, [token]); // Update the dependency array to only include token
+  }, [tokenParam]); // Include tokenParam in dependency array
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate(`/receive/${token}`); 
+    fetchSnippet(token);
+  };
+
+  const fetchSnippet = async (token) => {
+    setIsLoading(true);
+    setError(null); // Reset error state
+    try {
+      const fetchedSnippet = await getSnippet(token);
+      if (!fetchedSnippet) {
+        throw new Error("Invalid token or snippet not found.");
+      }
+      setSnippet(fetchedSnippet);
+    } catch (error) {
+      console.error("Error fetching snippet:", error);
+      setError(error.response?.data?.error || "An error occurred.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white rounded shadow">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="token" className="block text-gray-700 text-sm font-bold mb-2">
+          <label
+            htmlFor="token"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
             Enter token:
           </label>
           <input
             type="text"
             id="token"
-            value={token || ''}
+            value={token}
             onChange={(e) => setToken(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
@@ -62,17 +67,16 @@ function ReceiveSnippetForm() {
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           disabled={isLoading}
         >
-          {isLoading ? 'Retrieving...' : 'Receive'}
+          {isLoading ? "Retrieving..." : "Receive"}
         </button>
       </form>
 
-      {snippet && ( 
-        <div className="mt-8 whitespace-pre-wrap">
-          {snippet.content} 
-        </div>
+      {snippet && (
+        <div className="mt-8 whitespace-pre-wrap">{snippet.content}</div>
       )}
     </div>
   );
 }
 
 export default ReceiveSnippetForm;
+
