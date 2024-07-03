@@ -1,7 +1,7 @@
 // backend/src/routes/snippet.js
 
 const express = require('express');
-const snippetController = require('../controllers/snippet.js'); // Assuming you've updated the path if needed
+const snippetController = require('../controllers/snippet.js'); 
 
 const router = express.Router();
 const wrap = (fn) => (...args) => fn(...args).catch(args[2]); // Error handling middleware
