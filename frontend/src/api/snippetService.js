@@ -29,3 +29,4 @@ export async function getSnippet(token) {
     throw error; // Rethrow the error for the component to handle
   }
 }
+
