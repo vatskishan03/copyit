@@ -104,7 +104,7 @@ function CreateSnippetForm() {
       {generatedToken && (
         <div className="mb-6">
           <p className="text-gray-700 text-sm font-bold">
-            Token: {generatedToken}
+            Token:{generatedToken}
           </p>
         </div>
       )}
