@@ -174,10 +174,10 @@ function CreateSnippetForm() {
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white rounded shadow">
       <div className="mb-4">
-//         <label htmlFor="content" className="block text-gray-700 text-sm font-bold mb-2">
-//           Enter your text:
-//         </label>
-//         <textarea
+       <label htmlFor="content" className="block text-gray-700 text-sm font-bold mb-2">
+          Enter your text:
+        </label>
+         <textarea
           id="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
