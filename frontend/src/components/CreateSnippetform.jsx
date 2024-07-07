@@ -172,7 +172,7 @@ function CreateSnippetForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md p-4 bg-white rounded shadow">
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white rounded shadow">
       <div className="mb-4">
        <label htmlFor="content" className="block text-gray-700 text-sm font-bold mb-2">
           Enter your text:
