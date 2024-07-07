@@ -1,9 +1,6 @@
 // frontend/src/api/snippetService.js
-
 import axios from 'axios'; 
-
-const API_BASE_URL='https://copyit-opal.vercel.app/api/snippet'
-// const API_BASE_URL = 'https://copy-ac8t.onrender.com/api/snippet'; // Adjust backend is on a different port or domain
+const API_BASE_URL = 'https://copy-ac8t.onrender.com/api/snippet'; 
 
 // Function to create a new snippet
 export async function createSnippet(content) {
