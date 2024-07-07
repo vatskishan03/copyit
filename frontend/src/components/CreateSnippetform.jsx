@@ -138,7 +138,7 @@
 import React, { useState, useRef } from 'react';
 import { createSnippet } from '../api/snippetService.js';
 import { useNavigate } from "react-router-dom";
-import { ClipboardIcon } from '@heroicons/react/outline'; // Install the package if you don't have it `npm i @heroicons/react`
+import { ClipboardIcon } from '@heroicons/react/outline'; 
 
 function CreateSnippetForm() {
   const [content, setContent] = useState('');
