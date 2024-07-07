@@ -3,13 +3,9 @@ const dotenv = require('dotenv');
 const path = require('path');
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
-
 const env = {
-  DATABASE_URL: process.env.DATABASE_URL || 'mongodb://localhost:27017/your_database_name' , 
-  PORT: process.env.PORT || 3000,
-  NODE_ENV: process.env.NODE_ENV || 'development',
+  DATABASE_URL: process.env.DATABASE_URL , 
+  PORT: process.env.PORT ,
+  NODE_ENV: process.env.NODE_ENV,
 };
-
 module.exports = env;
-
-
