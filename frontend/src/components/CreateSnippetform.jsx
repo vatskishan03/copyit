@@ -185,9 +185,9 @@ function CreateSnippetForm() {
       {generatedToken && (
         <div className="mb-6 pt-4"> 
           <p className="text-gray-700 text-sm" ref={tokenRef}>
-            Token: <span className="font-bold">{generatedToken}</span> 
+            Token:<span className="font-bold">{generatedToken}</span> 
             <button type="button" onClick={handleCopyToken} className="ml-2">
-              <ClipboardIcon className="h-5 w-5 text-gray-500" />
+            <ClipboardIcon className="h-5 w-5 text-gray-500 inline-block" /> 
             </button>
           </p>
         </div>
