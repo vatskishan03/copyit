@@ -137,7 +137,6 @@
 // frontend/src/components/CreateSnippetForm.jsx
 import React, { useState, useRef } from 'react';
 import { createSnippet } from '../api/snippetService.js';
-import { useNavigate } from "react-router-dom";
 import { ClipboardIcon } from '@heroicons/react/outline'; 
 
 function CreateSnippetForm() {
@@ -145,9 +144,8 @@ function CreateSnippetForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null); 
   const [generatedToken, setGeneratedToken] = useState(null); 
-  const navigate = useNavigate(); 
-
-  const tokenRef = useRef<HTMLParagraphElement>(null);
+  
+  const tokenRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
