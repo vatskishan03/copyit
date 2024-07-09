@@ -1,22 +1,23 @@
 // frontend/src/components/ReceiveSnippetForm.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { getSnippet } from "../api/snippetService";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { MdContentCopy } from 'react-icons/md';
 
 function ReceiveSnippetForm() {
   const [token, setToken] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [snippet, setSnippet] = useState(null);
   const [error, setError] = useState(null);
+  const [copyContentSuccess, setCopyContentSuccess] = useState(false);
+  const contentRef = useRef(null);
   const { token: tokenParam } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (tokenParam) {
-      // Fetch only if a token is provided in the URL
       fetchSnippet(tokenParam);
     }
-  }, [tokenParam]); // Include tokenParam in dependency array
+  }, [tokenParam]); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ function ReceiveSnippetForm() {
 
   const fetchSnippet = async (token) => {
     setIsLoading(true);
-    setError(null); // Reset error state
+    setError(null); 
     try {
       const fetchedSnippet = await getSnippet(token);
       if (!fetchedSnippet) {
@@ -39,6 +40,19 @@ function ReceiveSnippetForm() {
       setIsLoading(false);
     }
   };
+  const handleCopyContent = () => {
+    if (snippet && snippet.content && contentRef.current) {
+        navigator.clipboard.writeText(snippet.content)
+            .then(() => {
+                setCopyContentSuccess(true);
+                setTimeout(() => setCopyContentSuccess(false), 402);
+            })
+            .catch(err => {
+                console.error('Failed to copy content: ', err);
+            });
+    }
+};
+
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white rounded shadow">
@@ -55,11 +69,9 @@ function ReceiveSnippetForm() {
             id="token"
             value={token}
             onChange={(e) => setToken(e.target.value)}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-black focus:shadow-outline"
           />
         </div>
-
-        {/* Error Message Display */}
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
         <button
@@ -72,10 +84,23 @@ function ReceiveSnippetForm() {
       </form>
 
       {snippet && (
-        <div className="mt-8 whitespace-pre-wrap">{snippet.content}</div>
-      )}
-    </div>
-  );
+                <div className="mt-8 whitespace-pre-wrap relative"> 
+                <p className="text-gray-700 text-sm" ref={contentRef}>
+                    {snippet.content}
+                </p>
+            
+                <button 
+                    type="button" 
+                    onClick={handleCopyContent} 
+                    className="absolute top-0 right-0 ml-2 inline-flex items-center"
+                >
+                    <MdContentCopy className="h-5 w-5 text-gray-500 inline-block" />
+                    {copyContentSuccess && <span className="ml-1 text-green-500">Copied!</span>}
+                </button>
+            </div>
+            
+            )}
+        </div>
+    );
 }
-
 export default ReceiveSnippetForm;

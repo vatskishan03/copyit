@@ -37,9 +37,9 @@ function App() {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <div className="min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 flex flex-col items-center justify-center">
+      <div className="min-h-screen flex flex-col items-center justify-center">
         <header>
-          <h1 className="text-4xl font-extrabold text-white mb-8">
+          <h1 className="text-4xl font-bold text-white mb-8">
             Text Sharing App
           </h1>
         </header>
