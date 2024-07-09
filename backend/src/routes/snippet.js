@@ -1,5 +1,4 @@
 // backend/src/routes/snippet.js
-
 const express = require('express');
 const snippetController = require('../controllers/snippet.js'); 
 
