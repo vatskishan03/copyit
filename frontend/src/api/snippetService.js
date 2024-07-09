@@ -1,6 +1,6 @@
 import axios from 'axios'; 
-const API_BASE_URL = 'https://copy-ac8t.onrender.com/api/snippet'; 
-// const API_BASE_URL='http://localhost:3000/api/snippet';
+// const API_BASE_URL = 'https://copy-ac8t.onrender.com/api/snippet'; 
+const API_BASE_URL='http://localhost:3000/api/snippet';
 export async function createSnippet(content) {
   try {
     const response = await axios.post(`${API_BASE_URL}/create`, {

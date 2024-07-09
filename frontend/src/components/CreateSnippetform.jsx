@@ -15,6 +15,11 @@ function CreateSnippetForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!content.trim()) { 
+        setError("Input Text");  
+        return; // 
+    }
+
     setIsLoading(true);
 
     try {

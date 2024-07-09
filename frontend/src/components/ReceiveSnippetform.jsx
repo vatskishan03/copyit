@@ -24,8 +24,14 @@ function ReceiveSnippetForm() {
     fetchSnippet(token);
   };
 
-  const fetchSnippet = async (token) => {
+  const fetchSnippet = async (token) => { 
+    setSnippet(null);
+    if (!token.trim()) {
+        setError("Enter Token");
+        return; 
+    }
     setIsLoading(true);
+    setSnippet(null);
     setError(null); 
     try {
       const fetchedSnippet = await getSnippet(token);
