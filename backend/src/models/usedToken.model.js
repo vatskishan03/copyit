@@ -1,7 +1,5 @@
 // backend/src/models/usedToken.model.js
-
 const mongoose = require('mongoose');
-
 const usedTokenSchema = new mongoose.Schema({
   token: {
     type: String,

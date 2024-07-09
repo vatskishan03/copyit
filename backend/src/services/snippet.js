@@ -22,7 +22,7 @@ async function createSnippet(data) {
     const snippet = new Snippet({
       ...data,
       token,
-      // expiresAt: ... (if applicable)
+      // expiresAt: ... 
     });
 
     return await snippet.save();
