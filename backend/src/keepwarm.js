@@ -8,4 +8,4 @@ router.get('/keepWarm', (req, res) => {
   res.status(200).send('Application is warm!'); 
 });
 
-export default router; 
+module.exports = router;
