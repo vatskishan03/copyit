@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const connectDB = require('./config/db.js');
 const snippetRoutes = require('./routes/snippet.js');
+import keepWarmRouter from './keepwarm.js';
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true })); // Enable parsing of URL-encode
 
 // Routes
 app.use('/api/snippet', snippetRoutes);
+app.use('/api', keepWarmRouter); 
 
 // Simple error handling middleware (improve as needed)
 app.use((err, req, res, next) => {
