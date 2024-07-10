@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const connectDB = require('./config/db.js');
 const snippetRoutes = require('./routes/snippet.js');
-import keepWarmRouter from './keepwarm.js';
+const keepWarmRouter = require('./keepwarm.js');
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
