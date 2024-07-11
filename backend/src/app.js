@@ -20,7 +20,6 @@ app.use(express.urlencoded({ extended: true })); // Enable parsing of URL-encode
 app.use('/api/snippet', snippetRoutes);
 app.use('/api', keepWarmRouter); 
 
-// Simple error handling middleware (improve as needed)
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
@@ -28,7 +27,7 @@ app.use((err, req, res, next) => {
 
 // Start Server
 const port = process.env.PORT || 3000;
-app.listen(port, async () => { // Use app.listen directly 
+app.listen(port, async () => { 
   await connectDB(); 
   console.log(`Server running on port ${port}`);
 });

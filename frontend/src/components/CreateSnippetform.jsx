@@ -19,9 +19,8 @@ function CreateSnippetForm() {
         setError("Input Text");  
         return; // 
     }
-
     setIsLoading(true);
-
+    setError(null);
     try {
       const fetchedSnippet = await createSnippet(content);
       setGeneratedToken(fetchedSnippet.token);
@@ -62,7 +61,6 @@ function CreateSnippetForm() {
       {generatedToken && (
                 <div className="mb-6 pt-4 flex items-center">
                     <p className="text-gray-700 text-sm">Token:</p>
-                    {/* <span className="font-bold">{generatedToken}</span> */}
                     <span className="font-bold" style={{ marginLeft: '0.2rem', marginRight: '0.5rem' }}>{generatedToken}</span>
                     <button type="button" onClick={handleCopyToken} className="inline-flex items-center">
                         <MdContentCopy className="h-5 w-5 mx-6 text-gray-500 inline-block" />

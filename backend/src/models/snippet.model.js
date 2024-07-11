@@ -1,7 +1,5 @@
 // backend/src/models/snippet.model.js
-
 const mongoose = require('mongoose');
-
 const snippetSchema = new mongoose.Schema({
   content: {
     type: String,
